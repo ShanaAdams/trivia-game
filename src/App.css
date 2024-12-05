@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Jersey+15&display=swap");
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +40,14 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.dancing-script-landing-title {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 700; /* Choose a value between 400 and 700 */
+  font-style: normal;
+  text-align: center;
+  color: burlywood; /* Vibrant color */
+  text-shadow: 3px 3px 0px black; /* Optional shadow */
 }
