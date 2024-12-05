@@ -12,7 +12,7 @@ function App() {
         className="container"
         style={{ textAlign: "center", padding: "20px" }}
       >
-        <h1 className="dancing-script-landing-title transition-all">
+        <h1 className="dancing-script-landing-title">
           Welcome to My Trivia Game!
         </h1>
         <p>Get ready to test your knowledge.</p>

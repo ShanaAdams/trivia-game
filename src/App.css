@@ -70,5 +70,5 @@ body {
   font-style: normal;
   text-align: center;
   color: burlywood; /* Vibrant color */
-  text-shadow: 3px 3px 0px black; /* Optional shadow */
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);
 }
