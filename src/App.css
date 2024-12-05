@@ -5,6 +5,24 @@
   padding: 2rem;
   text-align: center;
 }
+body {
+  background-color: #ffffff; /* White background */
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 25px 25px; /* Size of the grid squares */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
 .logo {
   height: 6em;
