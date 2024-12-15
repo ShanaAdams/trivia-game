@@ -2,11 +2,12 @@ import React from "react";
 import PlayArrow from "@mui/material/Icon";
 import Pause from "@mui/material/Icon";
 import Slider from "@mui/material/Slider";
+import playPauseButton from "./PlayPauseButton";
 
 const ControlPanel = () => {
   return (
     <div className="control-panel">
-      <BackgroundMusic />
+      <playPauseButton />
       <Pause />
       <Settings />
       <div className="settings-panel">
