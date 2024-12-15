@@ -3,12 +3,14 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import ConfettiEffect from "./ConfettiEffect";
+import ControlPanel from "./ControlPanel";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      {/* <ControlPanel /> */}
       <div
         className="container"
         style={{ textAlign: "center", padding: "20px" }}
