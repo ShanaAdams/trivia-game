@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      {/* <ControlPanel /> */}
+      <ControlPanel />
       <div
         className="container"
         style={{ textAlign: "center", padding: "20px" }}
