@@ -3,13 +3,6 @@ import { PlayArrow } from "@mui/icons-material";
 import { Pause } from "@mui/icons-material";
 import { IconButton, Box } from "@mui/material";
 
-//create a PlaayArrow icon button3
-// write a function for onclick to change to the Pause icon
-//create a Settings icon button
-//write a function for onclick to display a settings panel
-//create a settings panel with a class of settings-panel
-//include a slider with the VolumeDown and VolumeUp icons
-
 const PlayPauseButton = () => {
   //track if muisc is playing
   const [isPlaying, setIsPlaying] = useState(false);
@@ -28,8 +21,8 @@ const PlayPauseButton = () => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
         marginTop: "20px",
       }}
     >
