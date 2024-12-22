@@ -1,19 +1,19 @@
 import React from "react";
-import PlayArrow from "@mui/material/Icon";
-import Pause from "@mui/material/Icon";
-import Slider from "@mui/material/Slider";
+
+import SettingsPanel from "./Settings";
 import PlayPauseButton from "./PlayPauseButton";
+import { IconButton, Box } from "@mui/material";
+
+//create a Settings icon button
+//write a function for onclick to display a settings panel
+//create a settings panel with a class of settings-panel
+//include a slider with the VolumeDown and VolumeUp icons
 
 const ControlPanel = () => {
   return (
     <div className="control-panel">
       <PlayPauseButton />
-      {/* <Settings /> */}
-      <div className="settings-panel">
-        {/* <VolumeDown /> */}
-        {/* <Slider /> */}
-        {/* <VolumeUp /> */}
-      </div>
+      <SettingsPanel />
     </div>
   );
 };
