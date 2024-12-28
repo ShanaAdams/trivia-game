@@ -23,7 +23,6 @@ const PlayPauseButton = () => {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
-        marginTop: "20px",
       }}
     >
       <IconButton
