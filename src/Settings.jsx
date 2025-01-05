@@ -32,9 +32,12 @@ const SettingsPanel = () => {
       {isSettingsPanelOpen && (
         <Box
           sx={{
+            position: "absolute",
+            top: "50px",
+            right: "0px",
             display: "flex",
             justifyContent: "flex-start",
-            alignItems: "space-between",
+            alignItems: "center",
             flexDirection: "row",
             backgroundColor: "burlywood",
             boxShadow: "0px 2px 5px rgba(0,0,0,0.3)",
@@ -42,6 +45,7 @@ const SettingsPanel = () => {
             borderRadius: "10px",
             marginTop: "20px",
             width: "300px",
+            zIndex: 1000, // Ensure the settings panel is on top of other elements
           }}
         >
           <IconButton onClick={handleVolumeDown}>
