@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Settings, VolumeDown, VolumeUp } from "@mui/icons-material";
 import { Slider } from "@mui/material";
 import { IconButton, Box } from "@mui/material";
 
-const SettingsPanel = () => {
+const SettingsPanel = ({ audioRef }) => {
   const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
-  const [volume, setVolume] = useState(30); //initial volume value
+  const [volume, setVolume] = useState(0.3); //initial volume value
 
   const handleVolumeDown = () => {
-    setVolume((prevVolume) => Math.max(prevVolume - 10, 0)); // Decrease volume by 10, minimum 0
+    setVolume((prevVolume) => Math.max(prevVolume - 0.1, 0)); // Decrease volume by 0.1, minimum 0
   };
   const handleVolumeUp = () => {
-    setVolume((prevVolume) => Math.min(prevVolume + 10, 100)); // Increase volume by 10, maximum 100
+    setVolume((prevVolume) => Math.min(prevVolume + 0.1, 1)); // Increase volume by 0.1, maximum 1
   };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume, audioRef]);
 
   return (
     <div className="settings-panel">
@@ -56,6 +62,9 @@ const SettingsPanel = () => {
             onChange={(e, newValue) => setVolume(newValue)}
             aria-label="Volume"
             sx={{ width: "200px", color: "white" }}
+            min={0}
+            max={1}
+            step={0.1}
           />
           <IconButton onClick={handleVolumeUp}>
             <VolumeUp sx={{ fontSize: 40, color: "white" }} />
