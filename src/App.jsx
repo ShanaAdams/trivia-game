@@ -3,16 +3,24 @@ import "./App.css";
 import ConfettiEffect from "./ConfettiEffect";
 import ControlPanel from "./ControlPanel";
 import { Button } from "@mui/material";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import ScoreBoard from "./ScoreBoard";
 
-function App() {
-  const [count, setCount] = useState(0);
-  const playCheerSound = () => {
+const Home = () => {
+  const navigate = useNavigate();
+
+  const playCheerSoundAndNavigate = () => {
     const audio = new Audio("/cheering-and-clapping-crowd-2-6029.mp3");
     audio.play();
+    navigate("/scoreboard");
   };
   return (
     <>
-      <ControlPanel />
       <div
         className="container"
         style={{ textAlign: "center", padding: "20px" }}
@@ -23,7 +31,7 @@ function App() {
         <ConfettiEffect />
         <p>Get ready to test your knowledge.</p>
         <Button
-          onClick={playCheerSound}
+          onClick={playCheerSoundAndNavigate}
           sx={{
             backgroundColor: "burlywood",
             "&:hover": { backgroundColor: "goldenrod" },
@@ -38,6 +46,18 @@ function App() {
         </Button>
       </div>
     </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <ControlPanel />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/scoreboard" element={<ScoreBoard />} />
+      </Routes>
+    </Router>
   );
 }
 
