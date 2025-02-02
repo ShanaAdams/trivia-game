@@ -10,6 +10,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import ScoreBoard from "./ScoreBoard";
+import Gameboard from "./Gameboard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scoreboard" element={<ScoreBoard />} />
+        <Route path="/gameboard" element={<Gameboard />} />
       </Routes>
     </Router>
   );
