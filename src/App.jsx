@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  Typography,
   List,
   ListItem,
   ListItemText,
@@ -81,7 +80,20 @@ const Home = () => {
           }}
         />
         <Box sx={{ position: "relative", zIndex: 2 }}>
-          <DialogTitle>Select a player</DialogTitle>
+          <DialogTitle
+            sx={{
+              fontFamily: '"Dancing Script", cursive',
+              fontOpticalSizing: "auto",
+              fontWeight: 700,
+              fontStyle: "normal",
+              textAlign: "center",
+              // color: "Goldenrod",
+              textShadow: "2px 2px 0px rgba(0, 0, 0, 0.4)",
+              fontSize: "2rem",
+            }}
+          >
+            Select a player
+          </DialogTitle>
           <DialogContent>
             <DialogContentText>
               Select a player, otherwise close player selection to start a new
@@ -93,6 +105,15 @@ const Home = () => {
                   button
                   onClick={() => handlePlayerSelect(player)}
                   key={index}
+                  sx={{
+                    fontFamily: '"Dancing Script", cursive',
+                    fontOpticalSizing: "auto",
+                    fontWeight: 700,
+                    fontStyle: "normal",
+                    textAlign: "center",
+                    textShadow: "2px 2px 0px rgba(0, 0, 0, 0.2)",
+                    fontSize: "3rem",
+                  }}
                 >
                   <ListItemText primary={player.name} />
                 </ListItem>
