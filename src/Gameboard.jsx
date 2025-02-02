@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const GameBoard = () => {
+  const location = useLocation();
+  const { player } = location.state || {};
   return (
     <Box
       sx={{
@@ -18,6 +21,11 @@ const GameBoard = () => {
       <Typography variant="h1" component="h2" gutterBottom>
         GameBoard
       </Typography>
+      {player && (
+        <Typography variant="h4" component="h4" gutterBottom>
+          Hi {player.name}, welcome back!
+        </Typography>
+      )}
     </Box>
   );
 };
