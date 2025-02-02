@@ -1,6 +1,6 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,7 +24,7 @@ const Player = mongoose.model("Player", playerSchema);
 // Get top players
 app.get("/api/players", async (req, res) => {
   try {
-    const players = await Player.find().sort({ score: -1 }).limit(5);
+    const players = await Player.find().sort({ score: -1 }).limit(10);
     res.json(players);
   } catch (err) {
     res.status(500).json({ message: err.message });
