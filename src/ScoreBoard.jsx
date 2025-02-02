@@ -8,6 +8,7 @@ import {
   ListItemText,
   TextField,
   Button,
+  Paper,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -48,47 +49,61 @@ const ScoreBoard = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
         height: "100vh",
         color: "burlywood",
+        padding: "20px",
       }}
     >
       <Typography variant="h1" component="h2" gutterBottom>
         ScoreBoard
       </Typography>
-      {submitted ? (
-        <Typography variant="h4" component="h4" gutterBottom>
-          Hi, {playerName}!
-        </Typography>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Enter your name"
-            value={playerName}
-            onChange={(e) => setPlayerName(e.target.value)}
-            required
-            sx={{ marginBottom: "20px" }}
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              backgroundColor: "burlywood",
-              "&:hover": { backgroundColor: "goldenrod" },
-            }}
-          >
-            Submit
-          </Button>
-        </form>
-      )}
-      <List>
-        {players.map((player, index) => (
-          <ListItem key={index}>
-            <ListItemText primary={`${player.name}: ${player.score}`} />
-          </ListItem>
-        ))}
-      </List>
+      <Paper
+        elevation={3}
+        sx={{
+          padding: "20px",
+          backgroundColor: "white",
+          borderRadius: "10px",
+          width: "80%",
+          maxWidth: "600px",
+        }}
+      >
+        {submitted ? (
+          <Typography variant="h4" component="h4" gutterBottom>
+            Hi, {playerName}!
+          </Typography>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Enter your name"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              required
+              sx={{ marginBottom: "20px", marginRight: "10px" }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: "burlywood",
+                "&:hover": { backgroundColor: "goldenrod" },
+                height: "55px",
+                width: "150px",
+              }}
+            >
+              Submit
+            </Button>
+          </form>
+        )}
+        <List>
+          {players.map((player, index) => (
+            <ListItem key={index}>
+              <ListItemText primary={`${player.name}: ${player.score}`} />
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
     </Box>
   );
 };
