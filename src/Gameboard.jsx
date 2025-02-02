@@ -22,7 +22,21 @@ const GameBoard = () => {
         GameBoard
       </Typography>
       {player && (
-        <Typography variant="h4" component="h4" gutterBottom>
+        <Typography
+          variant="h4"
+          component="h4"
+          gutterBottom
+          sx={{
+            fontFamily: '"Dancing Script", cursive',
+            fontOpticalSizing: "auto",
+            fontWeight: 700,
+            fontStyle: "normal",
+            textAlign: "center",
+            // color: "Goldenrod",
+            textShadow: "2px 2px 0px rgba(0, 0, 0, 0.4)",
+            fontSize: "3rem",
+          }}
+        >
           Hi {player.name}, welcome back!
         </Typography>
       )}
