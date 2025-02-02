@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import ConfettiEffect from "./ConfettiEffect";
 import ControlPanel from "./ControlPanel";
@@ -10,7 +9,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import ScoreBoard from "./ScoreBoard";
-import Gameboard from "./GameBoard";
+import Gameboard from "./Gameboard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -57,7 +56,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scoreboard" element={<ScoreBoard />} />
-        <Route path="/gameboard" element={<GameBoard />} />
+        <Route path="/gameboard" element={<Gameboard />} />
       </Routes>
     </Router>
   );

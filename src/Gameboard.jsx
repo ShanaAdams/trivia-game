@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, Typography } from "@mui/material";
 
-const Gameboard = () => {
+const GameBoard = () => {
   return (
     <Box
       sx={{
@@ -22,4 +22,4 @@ const Gameboard = () => {
   );
 };
 
-export default Gameboard;
+export default GameBoard;
