@@ -9,10 +9,14 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/trivia-game", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect("mongodb://localhost:27017/trivia-game", {})
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB", err);
+  });
 
 const playerSchema = new mongoose.Schema({
   name: String,
@@ -21,7 +25,7 @@ const playerSchema = new mongoose.Schema({
 
 const Player = mongoose.model("Player", playerSchema);
 
-// Get top players
+// Get top players MongoDB
 app.get("/api/players", async (req, res) => {
   try {
     const players = await Player.find().sort({ score: -1 }).limit(10);
@@ -31,7 +35,7 @@ app.get("/api/players", async (req, res) => {
   }
 });
 
-// Add a player
+// Add a player to MongoDB
 app.post("/api/players", async (req, res) => {
   const player = new Player({
     name: req.body.name,
@@ -43,6 +47,18 @@ app.post("/api/players", async (req, res) => {
     res.status(201).json(newPlayer);
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+});
+
+// Get trivia question from OpenTDB API
+app.get("/api/trivia", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://opentdb.com/api.php?amount=1&type=multiple"
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch trivia question" });
   }
 });
 
