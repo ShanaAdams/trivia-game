@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import he from "he";
 
 const GameBoard = () => {
   const location = useLocation();
@@ -20,12 +21,13 @@ const GameBoard = () => {
           "https://opentdb.com/api.php?amount=1&type=multiple"
         );
         const data = response.data.results[0];
-        setQuestion(data.question);
-        setCorrectAnswer(data.correct_answer);
+        setQuestion(he.decode(data.question));
+        setCorrectAnswer(he.decode(data.correct_answer));
         setChoices(
-          [...data.incorect_answers, data.correct_answer].sort(
-            () => Math.random() - 0.5
-          )
+          [
+            ...data.incorect_answers.map((answer) => he.decode(answer)),
+            he.decode(data.correct_answer),
+          ].sort(() => Math.random() - 0.5)
         );
       } catch (err) {
         console.error(err);
