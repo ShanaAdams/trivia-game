@@ -103,6 +103,7 @@ const Home = () => {
               {players.map((player, index) => (
                 <ListItem
                   button
+                  {...true}
                   onClick={() => handlePlayerSelect(player)}
                   key={index}
                   sx={{
