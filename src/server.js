@@ -2,12 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import axios from "axios";
-import dotenv from "dotenv";
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 // Connect to MongoDB
