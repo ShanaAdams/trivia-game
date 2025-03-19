@@ -1,11 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import axios from "axios";
+import dotenv from "dotenv";
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 // Connect to MongoDB
@@ -53,9 +55,7 @@ app.post("/api/players", async (req, res) => {
 // Get trivia question from OpenTDB API
 app.get("/api/trivia", async (req, res) => {
   try {
-    const response = await axios.get(
-      "https://opentdb.com/api.php?amount=1&type=multiple"
-    );
+    const response = await axios.get("https://opentdb.com/api.php?amount=1");
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch trivia question" });
