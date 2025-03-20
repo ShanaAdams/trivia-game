@@ -10,7 +10,7 @@ const GameBoard = () => {
   const [question, setQuestion] = useState();
   const [choices, setChoices] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
-  const [selectedAnswer, setSelectedAnswer] = useState("null");
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
 
@@ -136,12 +136,18 @@ const GameBoard = () => {
                   key={index}
                   variant="contained"
                   onClick={() => handleAnswerSelect(choice)}
-                  // disabled={selectedAnswer !== null}
+                  disabled={
+                    selectedAnswer !== null && selectedAnswer !== choice
+                  }
                   sx={{
                     backgroundColor:
                       selectedAnswer === choice ? "burlywood" : "white",
                     color: selectedAnswer === choice ? "white" : "burlywood",
-                    "&:hover": { backgroundColor: "goldenrod", color: "white" },
+                    "&:hover": {
+                      backgroundColor:
+                        selectedAnswer === choice ? "burlywood" : "goldenrod",
+                      color: "white",
+                    },
                     boxShadow: "0px 2px 5px rgba(0,0,0,0.3)",
                     width: "100%",
                     height: "60px",
