@@ -13,6 +13,7 @@ const GameBoard = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     //Fetch a trivia question from openTDB API
@@ -66,10 +67,29 @@ const GameBoard = () => {
     setSelectedAnswer(choice);
     if (choice === correctAnswer) {
       setFeedback("Correct!");
+      setScore(score + 10);
     } else {
       setFeedback("Incorrect. The correct answer is: " + correctAnswer);
     }
   };
+
+  const saveScore = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/players", {
+        name: player.name,
+        score: score,
+      });
+    } catch (err) {
+      console.error("Error saving score:", err);
+    }
+  };
+
+  useEffect(() => {
+    //Save the score when the component unmounts
+    return () => {
+      saveScore();
+    };
+  }, [player, score]);
 
   return (
     <Box
@@ -83,6 +103,22 @@ const GameBoard = () => {
         padding: "20px",
       }}
     >
+      <Typography
+        variant="h5"
+        component="h5"
+        gutterBottom
+        sx={{
+          fontFamily: '"Dancing Script", cursive',
+          fontOpticalSizing: "auto",
+          fontWeight: 700,
+          fontStyle: "normal",
+          textAlign: "center",
+          textShadow: "2px 2px 0px rgba(0, 0, 0, 0.4)",
+          fontSize: "2rem",
+        }}
+      >
+        Score: {score}
+      </Typography>
       {player && (
         <Typography
           variant="h4"
