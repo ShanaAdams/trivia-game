@@ -33,12 +33,16 @@ const ScoreBoard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/players", {
+      const response = await axios.post("http://localhost:5000/api/players", {
         name: playerName,
         score: 0,
       });
+      // await axios.post("http://localhost:5000/api/players", {
+      //   name: playerName,
+      //   score: 0,
+      // });
       setSubmitted(true);
-      navigate("/gameboard");
+      navigate("/gameboard", { state: { player: response.data } });
     } catch (err) {
       console.error(err);
     }
