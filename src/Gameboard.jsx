@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Box, Typography, Paper, Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
@@ -14,6 +14,7 @@ const GameBoard = () => {
   const [feedback, setFeedback] = useState("");
   const [error, setError] = useState("");
   const [score, setScore] = useState(0);
+  const hasSavedScore = useRef(false);
 
   useEffect(() => {
     //Fetch a trivia question from openTDB API
@@ -74,20 +75,29 @@ const GameBoard = () => {
   };
 
   const saveScore = async () => {
-    try {
-      await axios.post("http://localhost:5000/api/players", {
-        name: player.name,
-        score: score,
-      });
-    } catch (err) {
-      console.error("Error saving score:", err);
+    if (player && player._id && player.name) {
+      try {
+        const response = await axios.put("http://localhost:5000/api/players", {
+          _id: player._id,
+          name: player.name,
+          score: score,
+        });
+        console.log(response.data.message);
+      } catch (err) {
+        console.error("Error saving score:", err);
+      }
+    } else {
+      console.error("Invalid player object, cannot save score.");
     }
   };
 
   useEffect(() => {
     //Save the score when the component unmounts
     return () => {
-      saveScore();
+      if (player && !hasSavedScore.current) {
+        saveScore();
+        hasSavedScore.current = true;
+      }
     };
   }, [player, score]);
 

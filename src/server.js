@@ -36,16 +36,47 @@ app.get("/api/players", async (req, res) => {
   }
 });
 
-// Add a player to MongoDB
+//Add a new player to MongoDB
 app.post("/api/players", async (req, res) => {
-  const player = new Player({
-    name: req.body.name,
-    score: req.body.score,
-  });
+  const { name, score } = req.body;
 
   try {
-    const newPlayer = await player.save();
+    const newPlayer = new Player({ name, score });
+    await newPlayer.save();
     res.status(201).json(newPlayer);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// Update an existing player's score in MongoDB
+app.put("/api/players", async (req, res) => {
+  const { _id, name, score } = req.body;
+
+  try {
+    //Find the player by _id
+    const player = await Player.findById(_id);
+
+    if (player) {
+      // Check if the new score is higher than the current score
+      if (!player.score || score > player.score) {
+        //update the player's score
+        await player.updateOne(
+          { _id },
+          {
+            $set: { score: score },
+          }
+        );
+        res.status(200).json({ message: "Score updated successfully", score });
+      } else {
+        res.status(200).json({
+          message: "Score not updated (lower or equal)",
+          score: player.score,
+        });
+      }
+    } else {
+      res.status(404).json({ message: "Player not found" });
+    }
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
